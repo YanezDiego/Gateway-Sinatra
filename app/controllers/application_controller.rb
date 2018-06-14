@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       erb :'/user/signup'
     else
-      redirect to '/users/profile'
+      redirect to '/user/profile'
     end
   end
 
@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @current_user ||= User.find_by_id(id: session[:user_id]) if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
   end
 
