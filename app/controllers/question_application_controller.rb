@@ -31,6 +31,7 @@ class QuestionApplicationController < ApplicationController
   end
 
   get '/questions/:id' do
+    #need's to show who asked question. come back to it!
     if logged_in?
       @question = Question.find_by_id(params[:id])
       erb :'/questions/show'
