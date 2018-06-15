@@ -1,4 +1,12 @@
-<h1>Your Questions</h1>  
+<h1>Your Questions:</h1>
+<%@current_user.questions.each do |question|%>
+<ul>
+  <li><a href="/questions/<%=question.id%>"><%=question.content%></a></li>
+</ul>
+<%end%>
+<br><br>
+<!--All the quesitons being asked-->
+<h2>Questions being asked:</h2>
 <%@questions.each do |question|%>
   <li>
     <a href="/questions/<%=question.id%>"><%=question.content%></a>
