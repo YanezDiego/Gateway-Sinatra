@@ -40,5 +40,40 @@ class QuestionApplicationController < ApplicationController
     end
   end
 
+  get '/questions/:id/edit' do
+    if logged_in?
+      @question = Question.find_by_id(params[:id])
+        if @question && @question.user == current_user
+          erb :'/questions/edit'
+        else
+          redirect to "/questions/#{@question.id}"
+        end
+    else
+        redirect to '/'
+    end
+  end
+
+  patch '/questions/:id' do
+    if logged_in?
+      @question = Question.find_by_id(params[:id])
+      @question.update(content: params[:content])
+      redirect to "/questions/#{@question.id}"
+    else
+      redirect to "/"
+    end
+  end
+
+  delete '/questions/:id/delete' do
+    if logged_in?
+      @question = current_user.questions.find_by(id: params[:id])
+      if @question && @question.destroy
+        redirect to '/questions'
+      else
+        redirect "/questions"
+      end
+    else
+      redirect '/'
+    end
+  end
 
 end
