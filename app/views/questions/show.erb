@@ -4,6 +4,16 @@
 
 <!--  Should Show WHo asked the question. -->
 <h3><%=@question.content%></h3>
+<a href="/questions/<%=@question.id%>/edit">Edit Question</a>
+
+<!-- Deleting Question -->
+<form action="/questions/<%=@question.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit"  value="Delete Question">
+</form>
+
+<br><br><br>
+
 
 <div class="comments">
   <%@question.comments.each do |comment|%>
