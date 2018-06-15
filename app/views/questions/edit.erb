@@ -1,0 +1,12 @@
+<h3>Edit Your Question</h3>
+
+<form action="/questions/<%=@question.id%>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <label for="content">Question:</label>
+  <input type="text" id="content" name="content" value="<%=@question.content%>">
+
+  <input type="submit" value="Update">
+</form>
+
+<a href="/questions/<%=@question.id%>">Cancel</a>
