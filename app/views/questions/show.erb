@@ -3,7 +3,9 @@
 <br><br>
 
 <!--  Should Show WHo asked the question. -->
+
 <h2><%=@question.user.username%></h2>
+<!--Is giving an error if there's no user. due to seed -->
 <h3><%=@question.content%></h3>
 
 <% if @question.user == current_user %>
@@ -17,11 +19,15 @@
 <%end%>
 <br><br><br>
 
-
+<form action="/comments/<%=@question.id%>/new" method="post">
+  <label>Add A Comment:</label>
+  <input type="text" name="content" id="comment">
+  <input type="submit" value="Add Comment">
+</form>
+<br><br>
 <div class="comments">
   <%@question.comments.each do |comment|%>
     <p><%=comment.user.username%> answered:</p>
-    <p><%=comment.content%><p>
+    <p> <a href="/comments/<%=comment.id%>"><%=comment.content%><p></a>
   <%end%>
-  <a href="/comment/new">Add a Comment</a>
 </div>
