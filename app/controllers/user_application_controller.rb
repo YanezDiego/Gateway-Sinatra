@@ -11,7 +11,7 @@ class UserApplicationController < ApplicationController
   post '/user/login' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.ide
+      session[:user_id] = user.id
       redirect to '/user/profile'
     else
       redirect to '/signup'
@@ -29,7 +29,7 @@ class UserApplicationController < ApplicationController
   get '/user/logout' do
     if logged_in?
       session.clear
-      redirect to '/login'
+      redirect to '/user/login'
     else
       redirect to '/'
     end
