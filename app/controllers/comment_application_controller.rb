@@ -19,11 +19,25 @@ class CommentApplicationController < ApplicationController
     end
   end
 
+
+  get '/comments/:id/edit' do
+    if logged_in?
+      @comment = Comment.find_by_id(params[:id])
+        if @comment.user == current_user
+          erb :'/comment/edit'
+        else
+          redirect "/comments/#{@comment.id}"
+        end
+    else
+      redirect to '/'
+    end
+  end
+
   patch '/comments/:id' do
     if logged_in?
-      @comments = Question.comments.find_by_id(params[:id])
+      @comments = Comment.find_by_id(params[:id])
       @comments.update(content: params[:content])
-      redirect to "/questions/#{@question.id}"
+      redirect to "/questions/#{@comments.question.id}"
     else
       redirect to "/"
     end
@@ -35,7 +49,7 @@ class CommentApplicationController < ApplicationController
     if logged_in?
       @comment = current_user.comments.find_by(id: params[:id])
       if @comment && @comment.destroy
-        redirect to '/questions'
+        redirect to "/questions/#{@comment.question.id}"
       end
     else
       redirect '/'
