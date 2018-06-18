@@ -1,0 +1,10 @@
+<a href="/questions">Home</a><br>
+<p><%=@comments.content%></p>
+<br><br>
+<% if @comments.user == current_user %>
+<a href="/comment/<%=@comments.id%>/edit">Edit Comment</a>
+<form action="/comments/<%=@comments.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit"  value="Delete Comment">
+</form>
+<%end%>
