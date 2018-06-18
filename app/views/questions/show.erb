@@ -3,7 +3,10 @@
 <br><br>
 
 <!--  Should Show WHo asked the question. -->
+<h2><%=@question.user.username%></h2>
 <h3><%=@question.content%></h3>
+
+<% if @question.user == current_user %>
 <a href="/questions/<%=@question.id%>/edit">Edit Question</a>
 
 <!-- Deleting Question -->
@@ -11,7 +14,7 @@
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit"  value="Delete Question">
 </form>
-
+<%end%>
 <br><br><br>
 
 
@@ -20,4 +23,5 @@
     <p><%=comment.user.username%> answered:</p>
     <p><%=comment.content%><p>
   <%end%>
+  <a href="/comment/new">Add a Comment</a>
 </div>
