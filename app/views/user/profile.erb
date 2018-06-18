@@ -1,1 +1,12 @@
 <h1>Welcome, <%=@current_user.username%></h1>
+<a href="/questions">View All Questions</a>
+<!--Current User Questions Only -->
+<% if @current_user.questions.empty? %>
+  <h2>You have not asked any qustions yet.</h2>
+<% else %>
+  <%@current_user.questions.each do |question|%>
+  <li><%=question.content%></li>
+  <% end %>
+<% end %>
+<a href="/questions/new">Ask A Question.</a><br>
+<a href="/user/logout">Logout</a>
