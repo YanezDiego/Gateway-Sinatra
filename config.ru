@@ -7,4 +7,5 @@ end
 use Rack::MethodOverride
 use UserApplicationController
 use QuestionApplicationController
+use CommentApplicationController
 run ApplicationController
