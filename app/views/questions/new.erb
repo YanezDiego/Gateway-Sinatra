@@ -1,4 +1,9 @@
 <h1>What Is Your Question?</h1>
+<%if @question && @question.errors %>
+  <% @question.errors.full_messages.each do |msg|%>
+  <p><%=msg%></p>
+  <% end %>
+<% end %>
 
 <form action="/questions" method="post">
   <label>Question:</label><br>
