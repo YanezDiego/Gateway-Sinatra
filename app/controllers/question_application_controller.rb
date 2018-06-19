@@ -23,7 +23,8 @@ class QuestionApplicationController < ApplicationController
       if @question.save
         redirect to "/questions/#{@question.id}"
       else
-        redirect to '/questions/new'
+        erb :'/questions/new'
+        #redirect to '/questions/new'
       end
     else
       redirect to '/'
