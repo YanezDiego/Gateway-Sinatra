@@ -9,8 +9,8 @@ class UserApplicationController < ApplicationController
   end
 
   post '/user/login' do
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to '/user/profile'
     else
@@ -22,7 +22,7 @@ class UserApplicationController < ApplicationController
     if logged_in?
       erb :'/user/profile'
     else
-      refirect to '/user/login'
+      redirect to '/user/login'
     end
   end
 
